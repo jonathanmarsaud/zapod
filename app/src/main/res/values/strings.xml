@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string name="app_name">Zapod</string>
+    <string name="apod">Astronomy Picture of the Day</string>
+    <string name="define">Set as wallpaper</string>
+    <string name="defined">Wallpaper changed</string>
+</resources>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string name="app_name">Zapod</string>
+    <string name="apod">Image d’Astronomie du Jour</string>
+    <string name="define">Définir en tant qu’arrière-plan</string>
+    <string name="defined">Arrière-plan modifié</string>
+</resources>
