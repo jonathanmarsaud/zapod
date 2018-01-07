@@ -5,4 +5,5 @@
     <string name="apod">Astronomy Picture of the Day</string>
     <string name="define">Set as wallpaper</string>
     <string name="defined">Wallpaper changed</string>
+    <string name="error">Cannot get image, maybe you are offline or it is a problem tied to NASA’s APOD website (not responding or published another format than image); try again later.</string>
 </resources>

@@ -5,4 +5,5 @@
     <string name="apod">Image d’Astronomie du Jour</string>
     <string name="define">Définir en tant qu’arrière-plan</string>
     <string name="defined">Arrière-plan modifié</string>
+    <string name="error">L’image n’a pas pu être récupérée : vous êtes peut-être hors-connexion ou c’est un problème lié au site Web APOD de la NASA (ne répond pas ou a publié autre chose qu’une image) ; veuillez réessayer plus tard.</string>
 </resources>

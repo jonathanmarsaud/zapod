@@ -28,6 +28,7 @@
         android:src="@drawable/no_data" />
 
     <Button
+        android:id="@+id/setWallpaperButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -35,4 +36,15 @@
         android:layout_marginBottom="10dp"
         android:onClick="defineWallpaper"
         android:text="@string/define" />
+
+    <TextView
+        android:id="@+id/errorTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_margin="20dp"
+        android:text="@string/error"
+        android:textColor="@color/colorAccent"
+        android:visibility="gone" />
 </RelativeLayout>
