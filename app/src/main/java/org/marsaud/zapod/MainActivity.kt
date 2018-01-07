@@ -90,7 +90,7 @@ class MainActivity : AppCompatActivity() {
             if (Build.VERSION.SDK_INT >= 24) { // only supported since Android 7.0 (Nougat)
                 wallpaper.setBitmap(bmp, null, true, FLAG_LOCK) // lockscreen wallpaper
             }
-            Snackbar.make(root_view, R.string.defined, Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(rootView, R.string.defined, Snackbar.LENGTH_SHORT).show()
         } catch (e: IOException) {
             e.printStackTrace()
         }
