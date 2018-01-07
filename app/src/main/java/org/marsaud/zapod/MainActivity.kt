@@ -5,11 +5,14 @@ import android.app.WallpaperManager.FLAG_LOCK
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.StrictMode
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.OkHttpClient
@@ -44,6 +47,37 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Inflate ActionBar from res/menu/menu_main.xml.
+     *
+     * @param menu Mandatory signature for this function.
+     * @return Mandatory signature for this function.
+     */
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    /**
+     * After ActionBar is inflated, inflat the menu itself.
+     *
+     * @param item Item id of the menu.
+     * @return Mandatory signature for this function.
+     */
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item?.itemId) {
+            R.id.apodWeb -> {
+                val apodWebIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://apod.nasa.gov/"))
+                startActivity(apodWebIntent)
+                return super.onOptionsItemSelected(item)
+            }
+            R.id.about -> {
+                startActivity(Intent(this, AboutActivity::class.java))
+                return super.onOptionsItemSelected(item)
+            }
+            else -> return false
+        }
+    }
 
     /**
      * Get apod.nasa.gov webpage and parse its content to find the APOD and tht title of it (using OKHTTP + Jsoup).
@@ -113,14 +147,5 @@ class MainActivity : AppCompatActivity() {
         } catch (e: IOException) {
             e.printStackTrace()
         }
-    }
-
-    /**
-     * Show the AboutActivity.
-     *
-     * @param view Mandatory to use XML onClick attribute.
-     */
-    fun about(view: View) {
-        startActivity(Intent(this, AboutActivity::class.java))
     }
 }

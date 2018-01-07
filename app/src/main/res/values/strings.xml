@@ -6,6 +6,8 @@
     <string name="define">Set as wallpaper</string>
     <string name="defined">Wallpaper changed</string>
     <string name="error">Cannot get image, maybe you are offline or it is a problem tied to NASA’s APOD website (not responding or published another format than image); try again later.</string>
+    <string name="apod_web">APOD website</string>
+    <string name="about">About</string>
     <string name="about_author">Author:\nJonathan Marsaud &lt;zic@marsaud.org&gt;\nwww.marsaud.org\nMade with love with Kotlin programming language</string>
     <string name="about_libraries">Libraries used:\nOkHttp3 (Apache - https://square.github.io/okhttp/)\njsoup (MIT - https://jsoup.org/)</string>
     <string name="about_nasa">All APOD from NASA website (including the NASA logo itself) is owned by their authors.\nPlease refer to the APOD website (https://apod.nasa.gov/) to have more information about their licenses.</string>
