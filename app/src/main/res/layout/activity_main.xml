@@ -27,6 +27,17 @@
         android:contentDescription="@string/apod"
         android:src="@drawable/no_data" />
 
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/apod"
+        android:layout_centerInParent="true"
+        android:layout_margin="20dp"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp"
+        tools:text="Title" />
+
     <Button
         android:id="@+id/setWallpaperButton"
         android:layout_width="wrap_content"

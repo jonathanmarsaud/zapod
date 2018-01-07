@@ -31,6 +31,12 @@ class MainActivity : AppCompatActivity() {
         bmp = getImage(getPage(baseUrl + "astropix.html"))
         if (bmp != null) {
             apod.setImageBitmap(bmp)
+            val title = getPage(baseUrl + "astropix.html", 1)
+            if (title != null) {
+                titleTextView.text = title
+            } else {
+                titleTextView.visibility = View.GONE
+            }
         } else {
             setWallpaperButton.visibility = View.GONE
             errorTextView.visibility = View.VISIBLE
@@ -39,12 +45,13 @@ class MainActivity : AppCompatActivity() {
 
 
     /**
-     * Get apod.nasa.gov webpage and parse its content to find the APOD (using OKHTTP + Jsoup).
+     * Get apod.nasa.gov webpage and parse its content to find the APOD and tht title of it (using OKHTTP + Jsoup).
      *
      * @param url URL of the APOD homepage.
+     * @param type Int of value "0" by default, which get the image URL; if it's different from 0, get the title instead.
      * @return Return a String containing the URL to the APOD.
      */
-    fun getPage(url: String): String? {
+    fun getPage(url: String, type: Int = 0): String? {
         try {
             // Get webpage via OKHTTP
             val client = OkHttpClient()
@@ -54,10 +61,16 @@ class MainActivity : AppCompatActivity() {
 
             // Parse webpage via JSoup
             val document = Jsoup.parse(responseString)
-            val element = document.select("a")[1] // using get(1) instead of first() (= 0) to have the second element
-            val parsedString = element.attr("href")
-
-            return baseUrl + parsedString
+            var parsedString: String? = null
+            if (type == 0) {
+                val element = document.select("a").get(1) // using get(1) instead of first() (= 0) to have the second element
+                parsedString = element.attr("href")
+                return baseUrl + parsedString
+            } else {
+                val element = document.select("b").first()
+                parsedString = element.text()
+                return parsedString
+            }
         } catch (e: IOException) {
             e.printStackTrace()
             return null
