@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    android:orientation="vertical"
     tools:context="org.marsaud.zapod.MainActivity">
 
     <TextView
@@ -25,6 +24,7 @@
         android:layout_height="300dp"
         android:layout_centerInParent="true"
         android:contentDescription="@string/apod"
+        android:onClick="about"
         android:src="@drawable/no_data" />
 
     <TextView

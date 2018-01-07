@@ -2,6 +2,7 @@ package org.marsaud.zapod
 
 import android.app.WallpaperManager
 import android.app.WallpaperManager.FLAG_LOCK
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Build
@@ -99,7 +100,7 @@ class MainActivity : AppCompatActivity() {
     /**
      * Action triggered by the "define" button.
      *
-     * @param view Mandatory to use XML attribute.
+     * @param view Mandatory to use XML onClick attribute.
      */
     fun defineWallpaper(view: View) {
         try {
@@ -112,5 +113,14 @@ class MainActivity : AppCompatActivity() {
         } catch (e: IOException) {
             e.printStackTrace()
         }
+    }
+
+    /**
+     * Show the AboutActivity.
+     *
+     * @param view Mandatory to use XML onClick attribute.
+     */
+    fun about(view: View) {
+        startActivity(Intent(this, AboutActivity::class.java))
     }
 }

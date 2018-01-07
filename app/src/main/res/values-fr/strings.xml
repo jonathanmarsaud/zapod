@@ -6,4 +6,8 @@
     <string name="define">Définir en tant qu’arrière-plan</string>
     <string name="defined">Arrière-plan modifié</string>
     <string name="error">L’image n’a pas pu être récupérée : vous êtes peut-être hors-connexion ou c’est un problème lié au site Web APOD de la NASA (ne répond pas ou a publié autre chose qu’une image) ; veuillez réessayer plus tard.</string>
+    <string name="about_author">Auteur:\nJonathan Marsaud &lt;zic@marsaud.org&gt;\nwww.marsaud.org\nFait avec amour dans le langage de programmation Kotlin</string>
+    <string name="about_libraries">Librairies utilisées :\nOkHttp3 (Apache - https://square.github.io/okhttp/)\njsoup (MIT - https://jsoup.org/)</string>
+    <string name="about_nasa">Tous les APOD du site de la NASA (ainsi que le logo même de la NASA) appartiennent à leurs auteurs respectifs.\nVeuillez vous référez au site Web APOD (https://apod.nasa.gov/) pour avoir plus d’informations concernant leurs licences.</string>
+    <string name="about_nasa_alt">Logo de la NASA</string>
 </resources>
