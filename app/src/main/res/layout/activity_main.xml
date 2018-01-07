@@ -24,7 +24,6 @@
         android:layout_height="300dp"
         android:layout_centerInParent="true"
         android:contentDescription="@string/apod"
-        android:onClick="about"
         android:src="@drawable/no_data" />
 
     <TextView
