@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
 
             // Parse webpage via JSoup
             val document = Jsoup.parse(responseString)
-            val element = document.select("a")[0] // using get(1) instead of first() (= 0) to have the second element
+            val element = document.select("a")[1] // using get(1) instead of first() (= 0) to have the second element
             val parsedString = element.attr("href")
 
             return baseUrl + parsedString
