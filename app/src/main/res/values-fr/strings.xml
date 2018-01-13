@@ -8,7 +8,7 @@
     <string name="error">L’image n’a pas pu être récupérée : vous êtes peut-être hors-connexion ou c’est un problème lié au site Web APOD de la NASA (ne répond pas ou a publié autre chose qu’une image) ; veuillez réessayer plus tard.</string>
     <string name="apod_web">Site Web APOD</string>
     <string name="about">À propos</string>
-    <string name="about_author">Auteur:\nJonathan Marsaud &lt;zic@marsaud.org&gt;\nwww.marsaud.org\nFait avec amour dans le langage de programmation Kotlin</string>
+    <string name="about_author">Auteur:\nJonathan Marsaud &lt;zic@marsaud.org&gt;\nwww.marsaud.org\nFait avec ❤️ dans le langage de programmation Kotlin</string>
     <string name="about_kotlin_alt">Logo de Kotlin</string>
     <string name="about_libraries">Librairies utilisées :\nOkHttp3 (Apache - https://square.github.io/okhttp/)\njsoup (MIT - https://jsoup.org/)</string>
     <string name="about_okhttp_alt">Logo de OkHttp</string>

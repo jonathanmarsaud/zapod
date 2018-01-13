@@ -92,7 +92,7 @@ class MainActivity : AppCompatActivity() {
             val client = OkHttpClient()
             val request = Request.Builder().url(url).build()
             val response = client.newCall(request).execute()
-            val responseString = response.body()!!.string()
+            val responseString = response.body()?.string()
 
             // Parse webpage via JSoup
             val document = Jsoup.parse(responseString)
@@ -121,9 +121,9 @@ class MainActivity : AppCompatActivity() {
     fun getImage(url: String?): Bitmap? {
         try {
             val client = OkHttpClient()
-            val request = Request.Builder().url(url!!).build()
+            val request = Request.Builder().url(url).build()
             val response = client.newCall(request).execute()
-            val stream = response.body()!!.byteStream()
+            val stream = response.body()?.byteStream()
             return BitmapFactory.decodeStream(stream)
         } catch (e: IOException) {
             e.printStackTrace()
