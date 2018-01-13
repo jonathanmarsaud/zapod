@@ -65,8 +65,8 @@
             android:textColor="@color/colorAccent" />
 
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:contentDescription="@string/about_nasa_alt"
             android:onClick="goToNasaWebsite"
             android:src="@drawable/nasa" />
