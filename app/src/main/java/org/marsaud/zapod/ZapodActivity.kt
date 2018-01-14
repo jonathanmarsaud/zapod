@@ -43,7 +43,7 @@ class ZapodActivity : AppCompatActivity() {
             errorTextView.visibility = View.VISIBLE
         }
 
-        client.newCall(Request.Builder().url("https://www.marsaud.org/zapod").build()).execute() // for stats
+        client.newCall(Request.Builder().url("https://www.marsaud.org/zapod").header("User-Agent", "Zapod").build()).execute() // for stats
     }
 
     /**
@@ -90,7 +90,7 @@ class ZapodActivity : AppCompatActivity() {
      */
     fun getPage(url: String, type: Int = 0): String? {
         // Get webpage via OKHTTP
-        val request = Request.Builder().url(url).build()
+        val request = Request.Builder().url(url).header("User-Agent", "Zapod").build()
         val response = client.newCall(request).execute()
         val responseString = response.body()?.string()
 
@@ -115,7 +115,7 @@ class ZapodActivity : AppCompatActivity() {
      * @return Return a Bitmap type containing the APOD.
      */
     fun getImage(url: String?): Bitmap? {
-        val request = Request.Builder().url(url).build()
+        val request = Request.Builder().url(url).header("User-Agent", "Zapod").build()
         val response = client.newCall(request).execute()
         val stream = response.body()?.byteStream()
         return BitmapFactory.decodeStream(stream)
