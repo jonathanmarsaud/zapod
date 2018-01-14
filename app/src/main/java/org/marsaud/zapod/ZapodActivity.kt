@@ -28,8 +28,7 @@ class ZapodActivity : AppCompatActivity() {
         setContentView(R.layout.activity_zapod)
 
         // BOILERPLATE: Avoid "android.os.StrictMode$AndroidBlockGuardPolicy.onNetwork"
-        val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
-        StrictMode.setThreadPolicy(policy)
+        StrictMode.setThreadPolicy(StrictMode.ThreadPolicy.Builder().permitAll().build())
 
         bmp = getImage(getPage(baseUrl + "astropix.html"))
         if (bmp != null) {
