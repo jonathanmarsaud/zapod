@@ -21,6 +21,7 @@ import org.jsoup.Jsoup
 
 class ZapodActivity : AppCompatActivity() {
     val baseUrl = "https://apod.nasa.gov/apod/"
+    val client = OkHttpClient()
     var bmp: Bitmap? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -89,7 +90,6 @@ class ZapodActivity : AppCompatActivity() {
      */
     fun getPage(url: String, type: Int = 0): String? {
         // Get webpage via OKHTTP
-        val client = OkHttpClient()
         val request = Request.Builder().url(url).build()
         val response = client.newCall(request).execute()
         val responseString = response.body()?.string()
@@ -115,7 +115,6 @@ class ZapodActivity : AppCompatActivity() {
      * @return Return a Bitmap type containing the APOD.
      */
     fun getImage(url: String?): Bitmap? {
-        val client = OkHttpClient()
         val request = Request.Builder().url(url).build()
         val response = client.newCall(request).execute()
         val stream = response.body()?.byteStream()
