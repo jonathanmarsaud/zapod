@@ -17,16 +17,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:onClick="goToMarsaudOrg"
             android:text="@string/about_author"
             android:textColor="@color/colorAccent" />
 
         <ImageView
+            android:id="@+id/kotlinLogo"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_margin="10dp"
             android:contentDescription="@string/about_kotlin_alt"
-            android:onClick="goToKotlinWebsite"
             android:src="@drawable/kotlin" />
 
         <TextView
@@ -41,19 +40,19 @@
             android:layout_height="wrap_content">
 
             <ImageView
+                android:id="@+id/okHttpLogo"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_margin="10dp"
                 android:contentDescription="@string/about_okhttp_alt"
-                android:onClick="goToOkHttpWebsite"
                 android:src="@drawable/okhttp" />
 
             <ImageView
+                android:id="@+id/jsoupLogo"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_margin="10dp"
                 android:contentDescription="@string/about_jsoup_alt"
-                android:onClick="goToJsoupWebsite"
                 android:src="@drawable/jsoup" />
         </LinearLayout>
 
@@ -65,10 +64,10 @@
             android:textColor="@color/colorAccent" />
 
         <ImageView
+            android:id="@+id/nasaLogo"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:contentDescription="@string/about_nasa_alt"
-            android:onClick="goToNasaWebsite"
             android:src="@drawable/nasa" />
 
         <TextView

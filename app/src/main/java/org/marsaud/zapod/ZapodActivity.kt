@@ -66,8 +66,11 @@ class ZapodActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             R.id.apodWeb -> {
-                val apodWebIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://apod.nasa.gov/"))
-                startActivity(apodWebIntent)
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://apod.nasa.gov/")))
+                return super.onOptionsItemSelected(item)
+            }
+            R.id.marsaudWeb -> {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://www.marsaud.org/")))
                 return super.onOptionsItemSelected(item)
             }
             R.id.about -> {
