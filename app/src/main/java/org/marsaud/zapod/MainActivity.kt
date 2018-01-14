@@ -18,7 +18,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.jsoup.Jsoup
-import java.io.IOException
 
 class MainActivity : AppCompatActivity() {
     val baseUrl = "https://apod.nasa.gov/apod/"
@@ -87,28 +86,23 @@ class MainActivity : AppCompatActivity() {
      * @return Return a String containing the URL to the APOD.
      */
     fun getPage(url: String, type: Int = 0): String? {
-        try {
-            // Get webpage via OKHTTP
-            val client = OkHttpClient()
-            val request = Request.Builder().url(url).build()
-            val response = client.newCall(request).execute()
-            val responseString = response.body()?.string()
+        // Get webpage via OKHTTP
+        val client = OkHttpClient()
+        val request = Request.Builder().url(url).build()
+        val response = client.newCall(request).execute()
+        val responseString = response.body()?.string()
 
-            // Parse webpage via JSoup
-            val document = Jsoup.parse(responseString)
-            var parsedString: String? = null
-            if (type == 0) {
-                val element = document.select("a").get(1) // using get(1) instead of first() (= 0) to have the second element
-                parsedString = element.attr("href")
-                return baseUrl + parsedString
-            } else {
-                val element = document.select("b").first()
-                parsedString = element.text()
-                return parsedString
-            }
-        } catch (e: IOException) {
-            e.printStackTrace()
-            return null
+        // Parse webpage via JSoup
+        val document = Jsoup.parse(responseString)
+        var parsedString: String? = null
+        if (type == 0) {
+            val element = document.select("a").get(1) // using get(1) instead of first() (= 0) to have the second element
+            parsedString = element.attr("href")
+            return baseUrl + parsedString
+        } else {
+            val element = document.select("b").first()
+            parsedString = element.text()
+            return parsedString
         }
     }
 
@@ -119,16 +113,11 @@ class MainActivity : AppCompatActivity() {
      * @return Return a Bitmap type containing the APOD.
      */
     fun getImage(url: String?): Bitmap? {
-        try {
-            val client = OkHttpClient()
-            val request = Request.Builder().url(url).build()
-            val response = client.newCall(request).execute()
-            val stream = response.body()?.byteStream()
-            return BitmapFactory.decodeStream(stream)
-        } catch (e: IOException) {
-            e.printStackTrace()
-            return null
-        }
+        val client = OkHttpClient()
+        val request = Request.Builder().url(url).build()
+        val response = client.newCall(request).execute()
+        val stream = response.body()?.byteStream()
+        return BitmapFactory.decodeStream(stream)
     }
 
     /**
@@ -137,15 +126,11 @@ class MainActivity : AppCompatActivity() {
      * @param view Mandatory to use XML onClick attribute.
      */
     fun defineWallpaper(view: View) {
-        try {
-            val wallpaper = WallpaperManager.getInstance(applicationContext)
-            wallpaper.setBitmap(bmp) // system wallpaper
-            if (Build.VERSION.SDK_INT >= 24) { // only supported since Android 7.0 (Nougat)
-                wallpaper.setBitmap(bmp, null, true, FLAG_LOCK) // lockscreen wallpaper
-            }
-            Snackbar.make(rootView, R.string.defined, Snackbar.LENGTH_SHORT).show()
-        } catch (e: IOException) {
-            e.printStackTrace()
+        val wallpaper = WallpaperManager.getInstance(applicationContext)
+        wallpaper.setBitmap(bmp) // system wallpaper
+        if (Build.VERSION.SDK_INT >= 24) { // only supported since Android 7.0 (Nougat)
+            wallpaper.setBitmap(bmp, null, true, FLAG_LOCK) // lockscreen wallpaper
         }
+        Snackbar.make(rootView, R.string.defined, Snackbar.LENGTH_SHORT).show()
     }
 }

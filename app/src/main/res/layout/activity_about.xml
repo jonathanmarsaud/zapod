@@ -70,5 +70,12 @@
             android:contentDescription="@string/about_nasa_alt"
             android:onClick="goToNasaWebsite"
             android:src="@drawable/nasa" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Zapod 2.5"
+            android:textColor="@color/colorAccent" />
     </LinearLayout>
 </ScrollView>
