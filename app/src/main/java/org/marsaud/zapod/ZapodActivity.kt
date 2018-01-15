@@ -38,6 +38,7 @@ class ZapodActivity : AppCompatActivity() {
             } else {
                 titleTextView.visibility = View.GONE
             }
+            sizeTextView.text = "(${bmp?.width} x ${bmp?.height})"
         } else {
             setWallpaperButton.visibility = View.GONE
             errorTextView.visibility = View.VISIBLE

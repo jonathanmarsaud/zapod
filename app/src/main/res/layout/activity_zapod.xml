@@ -32,10 +32,19 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/apod"
         android:layout_centerInParent="true"
-        android:layout_margin="20dp"
+        android:layout_marginTop="10dp"
         android:textColor="@color/colorAccent"
         android:textSize="20sp"
         tools:text="Title" />
+
+    <TextView
+        android:id="@+id/sizeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/titleTextView"
+        android:layout_centerInParent="true"
+        android:textColor="@color/colorAccent"
+        tools:text="(width x height)" />
 
     <Button
         android:id="@+id/setWallpaperButton"
