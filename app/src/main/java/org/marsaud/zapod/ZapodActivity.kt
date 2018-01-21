@@ -28,7 +28,7 @@ class ZapodActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_zapod)
-        StrictMode.setThreadPolicy(StrictMode.ThreadPolicy.Builder().permitAll().build()) // avoid "android.os.StrictMode$AndroidBlockGuardPolicy.onNetwork"
+        StrictMode.setThreadPolicy(StrictMode.ThreadPolicy.Builder().permitAll().build()) // FIXME (don't do networking stuff in UI thread): avoid "android.os.StrictMode$AndroidBlockGuardPolicy.onNetwork"
 
         bmp = getImage(getPage(baseUrl + "astropix.html"))
         if (bmp != null) {
