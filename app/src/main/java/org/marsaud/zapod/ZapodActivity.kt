@@ -100,7 +100,7 @@ class ZapodActivity : AppCompatActivity() {
         val document = Jsoup.parse(responseString)
         var parsedString: String? = null
         if (type == 0) {
-            val element = document.select("a").get(1) // using get(1) instead of first() (= 0) to have the second element
+            val element = document.select("a")[1] // using get(1) instead of first() (= 0) to have the second element - Kotlin conversion: replace ".get(1)" by "[1]"
             parsedString = element.attr("href")
             return baseUrl + parsedString
         } else {
