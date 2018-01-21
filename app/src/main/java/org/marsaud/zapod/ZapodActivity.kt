@@ -5,6 +5,7 @@ import android.app.WallpaperManager.FLAG_LOCK
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Point
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -22,7 +23,7 @@ import org.jsoup.Jsoup
 class ZapodActivity : AppCompatActivity() {
     val baseUrl = "https://apod.nasa.gov/apod/"
     val client = OkHttpClient()
-    val version = "2.11"
+    val version = "2.12"
     var bmp: Bitmap? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,7 +40,11 @@ class ZapodActivity : AppCompatActivity() {
             } else {
                 titleTextView.visibility = View.GONE
             }
-            sizeTextView.text = "(${bmp?.width} x ${bmp?.height})"
+            sizeTextView.text = "${bmp?.width} x ${bmp?.height}"
+            val display = windowManager.defaultDisplay
+            val displaySize = Point()
+            display.getSize(displaySize)
+            screenSizeTextView.text = "(${displaySize.x} x ${displaySize.y})"
         } else {
             setWallpaperButton.visibility = View.GONE
             errorTextView.visibility = View.VISIBLE

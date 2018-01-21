@@ -43,7 +43,16 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/apod"
         android:layout_centerInParent="true"
-        android:layout_margin="10dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/colorAccent"
+        tools:text="width x height" />
+
+    <TextView
+        android:id="@+id/screenSizeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sizeTextView"
+        android:layout_centerInParent="true"
         android:textColor="@color/colorAccent"
         tools:text="(width x height)" />
 
