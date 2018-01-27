@@ -23,7 +23,7 @@ import org.jsoup.Jsoup
 class ZapodActivity : AppCompatActivity() {
     val baseUrl = "https://apod.nasa.gov/apod/"
     val client = OkHttpClient()
-    val version = "2.12"
+    val version = "2.13"
     var bmp: Bitmap? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
