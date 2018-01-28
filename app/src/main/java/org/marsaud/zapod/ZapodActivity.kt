@@ -33,10 +33,10 @@ class ZapodActivity : AppCompatActivity() {
         setContentView(R.layout.activity_zapod)
         StrictMode.setThreadPolicy(StrictMode.ThreadPolicy.Builder().permitAll().build()) // networking stuff in UI thread, avoid "android.os.StrictMode$AndroidBlockGuardPolicy.onNetwork"
 
-        bmp = getImage(getPage(baseUrl + "ap180127.html"))
+        bmp = getImage(getPage(baseUrl + "astropix.html"))
         if (bmp != null) {
             apod.setImageBitmap(bmp)
-            val title = getPage(baseUrl + "ap180127.html", 1)
+            val title = getPage(baseUrl + "astropix.html", 1)
             if (title != null) {
                 titleTextView.text = title
             } else {
@@ -139,7 +139,7 @@ class ZapodActivity : AppCompatActivity() {
         if (bmp != null) { // avoid using the PhotoView on the place-holder "NO DATA"
             val file = File(filesDir, "apod.png")
             val fileOut = FileOutputStream(file)
-            bmp?.compress(Bitmap.CompressFormat.PNG, 100, fileOut)
+            bmp?.compress(Bitmap.CompressFormat.PNG, 100, fileOut) // 100 is quality but ignored for PNGs as it's a lossless format
             fileOut.flush()
             fileOut.close()
             startActivity(Intent(this, ImageActivity::class.java))
