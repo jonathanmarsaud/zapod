@@ -19,7 +19,6 @@ import kotlinx.android.synthetic.main.activity_zapod.*
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.jsoup.Jsoup
-import org.marsaud.zapod.R.id.rootView
 
 class ZapodActivity : AppCompatActivity() {
     val baseUrl = "https://apod.nasa.gov/apod/"
