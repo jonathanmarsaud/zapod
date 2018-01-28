@@ -19,6 +19,7 @@ import kotlinx.android.synthetic.main.activity_zapod.*
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.jsoup.Jsoup
+import org.marsaud.zapod.R.id.rootView
 
 class ZapodActivity : AppCompatActivity() {
     val baseUrl = "https://apod.nasa.gov/apod/"
@@ -31,10 +32,10 @@ class ZapodActivity : AppCompatActivity() {
         setContentView(R.layout.activity_zapod)
         StrictMode.setThreadPolicy(StrictMode.ThreadPolicy.Builder().permitAll().build()) // networking stuff in UI thread, avoid "android.os.StrictMode$AndroidBlockGuardPolicy.onNetwork"
 
-        bmp = getImage(getPage(baseUrl + "astropix.html"))
+        bmp = getImage(getPage(baseUrl + "ap180127.html"))
         if (bmp != null) {
             apod.setImageBitmap(bmp)
-            val title = getPage(baseUrl + "astropix.html", 1)
+            val title = getPage(baseUrl + "ap180127.html", 1)
             if (title != null) {
                 titleTextView.text = title
             } else {
@@ -126,6 +127,19 @@ class ZapodActivity : AppCompatActivity() {
         val response = client.newCall(request).execute()
         val stream = response.body()?.byteStream()
         return BitmapFactory.decodeStream(stream)
+    }
+
+    /**
+     * Start ImageActivity to let user rotate/pinch-to-zoom.
+     *
+     * @param view Mandatory to use XML onClick attribute.
+     */
+    fun startImageActivity(view: View) {
+        if (bmp != null) { // avoid using the PhotoView on the place-holder "NO DATA"
+            val imageIntent = Intent(this, ImageActivity::class.java)
+            imageIntent.putExtra("apod", bmp)
+            startActivity(imageIntent)
+        }
     }
 
     /**

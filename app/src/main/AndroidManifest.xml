@@ -32,6 +32,8 @@
             android:name=".ZapodActivity"
             android:screenOrientation="portrait" />
 
+        <activity android:name=".ImageActivity" />
+
         <activity
             android:name=".AboutActivity"
             android:screenOrientation="portrait" />
