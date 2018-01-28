@@ -19,11 +19,13 @@ import kotlinx.android.synthetic.main.activity_zapod.*
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.jsoup.Jsoup
+import java.io.File
+import java.io.FileOutputStream
 
 class ZapodActivity : AppCompatActivity() {
     val baseUrl = "https://apod.nasa.gov/apod/"
     val client = OkHttpClient()
-    val version = "2.13"
+    val version = "2.14"
     var bmp: Bitmap? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -135,9 +137,12 @@ class ZapodActivity : AppCompatActivity() {
      */
     fun startImageActivity(view: View) {
         if (bmp != null) { // avoid using the PhotoView on the place-holder "NO DATA"
-            val imageIntent = Intent(this, ImageActivity::class.java)
-            imageIntent.putExtra("apod", bmp)
-            startActivity(imageIntent)
+            val file = File(filesDir, "apod.png")
+            val fileOut = FileOutputStream(file)
+            bmp?.compress(Bitmap.CompressFormat.PNG, 100, fileOut)
+            fileOut.flush()
+            fileOut.close()
+            startActivity(Intent(this, ImageActivity::class.java))
         }
     }
 
