@@ -74,7 +74,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="Zapod 2.14"
+            android:text="Zapod 2.15"
             android:textColor="@color/colorAccent"
             android:textSize="12sp" />
     </LinearLayout>

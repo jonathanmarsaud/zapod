@@ -6,7 +6,6 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Point
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.StrictMode
@@ -15,6 +14,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.net.toUri
 import kotlinx.android.synthetic.main.activity_zapod.*
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -25,7 +25,7 @@ import java.io.FileOutputStream
 class ZapodActivity : AppCompatActivity() {
     val baseUrl = "https://apod.nasa.gov/apod/"
     val client = OkHttpClient()
-    val version = "2.14"
+    val version = "2.15"
     var bmp: Bitmap? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -75,11 +75,11 @@ class ZapodActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             R.id.apodWeb -> {
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://apod.nasa.gov/")))
+                startActivity(Intent(Intent.ACTION_VIEW, "https://apod.nasa.gov/".toUri()))
                 return super.onOptionsItemSelected(item)
             }
             R.id.marsaudWeb -> {
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://www.marsaud.org/")))
+                startActivity(Intent(Intent.ACTION_VIEW, "https://www.marsaud.org/".toUri()))
                 return super.onOptionsItemSelected(item)
             }
             R.id.about -> {

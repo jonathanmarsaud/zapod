@@ -3,7 +3,6 @@ package org.marsaud.zapod
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Window
 import android.view.WindowManager
 import kotlinx.android.synthetic.main.activity_image.*
 import java.io.File
