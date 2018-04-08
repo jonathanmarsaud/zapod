@@ -67,7 +67,7 @@ class ZapodActivity : AppCompatActivity() {
     }
 
     /**
-     * After ActionBar is inflated, inflat the menu itself.
+     * After ActionBar is inflated, inflate the menu itself.
      *
      * @param item Item id of the menu.
      * @return Mandatory signature for this function.
