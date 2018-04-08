@@ -15,6 +15,7 @@ import android.view.MenuItem
 import android.view.View
 import androidx.core.net.toUri
 import kotlinx.android.synthetic.main.activity_zapod.*
+import kotlinx.coroutines.experimental.launch
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.jsoup.Jsoup
@@ -24,7 +25,7 @@ import java.io.FileOutputStream
 class ZapodActivity : AppCompatActivity() {
     val baseUrl = "https://apod.nasa.gov/apod/"
     val client = OkHttpClient()
-    val version = "2.15"
+    val version = "2.16"
     var bmp: Bitmap? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -151,10 +152,12 @@ class ZapodActivity : AppCompatActivity() {
      * @param view Mandatory to use XML onClick attribute.
      */
     fun defineWallpaper(view: View) {
-        val wallpaper = WallpaperManager.getInstance(applicationContext)
-        wallpaper.setBitmap(bmp) // system wallpaper
-        if (Build.VERSION.SDK_INT >= 24) { // only supported since Android 7.0 (Nougat)
-            wallpaper.setBitmap(bmp, null, true, WallpaperManager.FLAG_LOCK) // lockscreen wallpaper
+        launch {
+            val wallpaper = WallpaperManager.getInstance(applicationContext)
+            wallpaper.setBitmap(bmp) // system wallpaper
+            if (Build.VERSION.SDK_INT >= 24) { // only supported since Android 7.0 (Nougat)
+                wallpaper.setBitmap(bmp, null, true, WallpaperManager.FLAG_LOCK) // lockscreen wallpaper
+            }
         }
         Snackbar.make(rootView, R.string.defined, Snackbar.LENGTH_SHORT).show()
     }
