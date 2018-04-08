@@ -3,7 +3,7 @@ package org.marsaud.zapod
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import androidx.net.toUri
+import androidx.core.net.toUri
 import kotlinx.android.synthetic.main.activity_about.*
 
 class AboutActivity : AppCompatActivity() {

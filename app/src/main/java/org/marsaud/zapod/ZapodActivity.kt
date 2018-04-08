@@ -1,7 +1,6 @@
 package org.marsaud.zapod
 
 import android.app.WallpaperManager
-import android.app.WallpaperManager.FLAG_LOCK
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -14,7 +13,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import androidx.net.toUri
+import androidx.core.net.toUri
 import kotlinx.android.synthetic.main.activity_zapod.*
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -155,7 +154,7 @@ class ZapodActivity : AppCompatActivity() {
         val wallpaper = WallpaperManager.getInstance(applicationContext)
         wallpaper.setBitmap(bmp) // system wallpaper
         if (Build.VERSION.SDK_INT >= 24) { // only supported since Android 7.0 (Nougat)
-            wallpaper.setBitmap(bmp, null, true, FLAG_LOCK) // lockscreen wallpaper
+            wallpaper.setBitmap(bmp, null, true, WallpaperManager.FLAG_LOCK) // lockscreen wallpaper
         }
         Snackbar.make(rootView, R.string.defined, Snackbar.LENGTH_SHORT).show()
     }
