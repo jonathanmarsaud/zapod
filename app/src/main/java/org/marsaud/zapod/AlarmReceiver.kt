@@ -37,7 +37,7 @@ class AlarmReceiver : BroadcastReceiver() {
                     .setAutoCancel(true) // auto-remove notification when tapped
                     .build()
             val channel = NotificationChannel(channelId, "APOD", NotificationManager.IMPORTANCE_DEFAULT)
-            channel.setDescription("Notify every day that a new APOD is available.") // access property here is buggy in Kotlin
+            channel.setDescription(Resources.getSystem().getString(R.string.notification_channeldescription)) // access property here is buggy in Kotlin
             val notificationManager = context?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(channel)
             notificationManager.notify(1, notification)
