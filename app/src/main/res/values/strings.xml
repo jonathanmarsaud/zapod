@@ -15,4 +15,6 @@
     <string name="about_jsoup_alt">jsoup’s logo</string>
     <string name="about_nasa">All APOD from NASA website (including the NASA logo itself) is owned by their authors.\nPlease refer to the APOD website (https://apod.nasa.gov/) to have more information about their licenses.</string>
     <string name="about_nasa_alt">NASA’s logo</string>
+    <string name="notification_content">New APOD is available.</string>
+    <string name="notification_channeldescription">Notify every day that a new APOD is available.</string>
 </resources>

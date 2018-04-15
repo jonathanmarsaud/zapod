@@ -27,7 +27,7 @@ import java.util.*
 class ZapodActivity : AppCompatActivity() {
     val baseUrl = "https://apod.nasa.gov/apod/"
     val client = OkHttpClient()
-    val version = "2.16"
+    val version = "2.17"
     var bmp: Bitmap? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -170,15 +170,14 @@ class ZapodActivity : AppCompatActivity() {
      *
      * @param context Context to be used.
      */
-    // TODO: review this code.
     fun setRecurringAlarm(context: Context) {
         val updateTime = Calendar.getInstance()
-        updateTime.setTimeZone(TimeZone.getTimeZone("UTC"))
-        updateTime.set(Calendar.HOUR_OF_DAY, 8)
+        updateTime.setTimeZone(TimeZone.getTimeZone("Europe/Paris")) // access property here is buggy in Kotlin
+        updateTime.set(Calendar.HOUR_OF_DAY, 6)
         updateTime.set(Calendar.MINUTE, 0)
         val intent = Intent(context, AlarmReceiver::class.java)
-        val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT)
+        val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT) // TODO: to review.
         val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, updateTime.timeInMillis, AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent)
+        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, updateTime.timeInMillis, AlarmManager.INTERVAL_DAY, pendingIntent)
     }
 }

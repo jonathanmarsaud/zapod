@@ -7,6 +7,7 @@ import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.content.res.Resources
 import android.os.Build
 import android.support.v4.app.NotificationCompat
 import android.support.v4.app.NotificationManagerCompat
@@ -31,7 +32,7 @@ class AlarmReceiver : BroadcastReceiver() {
             val notification = Notification.Builder(context, channelId)
                     .setSmallIcon(R.mipmap.ic_launcher)
                     .setContentTitle("Zapod")
-                    .setContentText("New APOD is available.")
+                    .setContentText(Resources.getSystem().getString(R.string.notification_content)) // Ressources.getSystem() to get access to strings.xml values outside of an Activity
                     .setContentIntent(pendingIntent)
                     .setAutoCancel(true) // auto-remove notification when tapped
                     .build()
@@ -45,7 +46,7 @@ class AlarmReceiver : BroadcastReceiver() {
                 val notification = NotificationCompat.Builder(context, channelId)
                         .setSmallIcon(R.mipmap.ic_launcher)
                         .setContentTitle("Zapod")
-                        .setContentText("New APOD is available.")
+                        .setContentText(Resources.getSystem().getString(R.string.notification_content)) // Ressources.getSystem() to get access to strings.xml values outside of an Activity
                         .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                         .setContentIntent(pendingIntent)
                         .setAutoCancel(true) // auto-remove notification when tapped

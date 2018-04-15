@@ -15,4 +15,6 @@
     <string name="about_jsoup_alt">Logo de jsoup</string>
     <string name="about_nasa">Tous les APOD du site de la NASA (ainsi que le logo même de la NASA) appartiennent à leurs auteurs respectifs.\nVeuillez vous référez au site Web APOD (https://apod.nasa.gov/) pour avoir plus d’informations concernant leurs licences.</string>
     <string name="about_nasa_alt">Logo de la NASA</string>
+    <string name="notification_content">Un nouvel APOD est disponible.</string>
+    <string name="notification_channeldescription">Notifie chaque jour qu’un APOD est disponible.</string>
 </resources>
