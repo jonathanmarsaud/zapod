@@ -10,8 +10,6 @@ import android.os.Build
 import android.os.Bundle
 import android.os.StrictMode
 import android.support.design.widget.Snackbar
-import android.support.v4.app.NotificationCompat
-import android.support.v4.app.NotificationManagerCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
@@ -24,6 +22,7 @@ import okhttp3.Request
 import org.jsoup.Jsoup
 import java.io.File
 import java.io.FileOutputStream
+import java.util.*
 
 class ZapodActivity : AppCompatActivity() {
     val baseUrl = "https://apod.nasa.gov/apod/"
@@ -55,6 +54,7 @@ class ZapodActivity : AppCompatActivity() {
             errorTextView.visibility = View.VISIBLE
         }
 
+        setRecurringAlarm(this)
         client.newCall(Request.Builder().url("https://www.marsaud.org/zapod").header("User-Agent", "Zapod/$version").build()).execute() // for stats
     }
 
@@ -166,49 +166,19 @@ class ZapodActivity : AppCompatActivity() {
     }
 
     /**
-     * Function to notify the user that a new APOD is available.
+     * Set a recurring alarm to wake-up the AlarmReceiver
+     *
+     * @param context Context to be used.
      */
-    fun notifNewApod() {
-        val channelId = "org.marsaud.zapod.notifier"
-        val intent = Intent(this, MainActivity::class.java)
-        val pendingIntent = PendingIntent.getActivity(this, 0, intent, 0)
-        /* Since Oreo we must:
-         * 1) build a Notification;
-         * 2) build a NotificationChannel for this notification;
-         * 3) build a NotificationManager and pass the two to it;
-         * 4) call notify() method on the NotificationManager.
-         *
-         * Before Oreo we must:
-         * 1) build a Notification;
-         * 2) build a NotificationManager and pass the notification to it;
-         * 3) call notify() method on the NotificationManager.
-         */
-        if (Build.VERSION.SDK_INT >= 26) { // NotificationChannel are only supported since Android 8.0 (Oreo)
-            val notification = Notification.Builder(this, channelId)
-                    .setSmallIcon(R.mipmap.ic_launcher)
-                    .setContentTitle("Zapod")
-                    .setContentText("New APOD is available.")
-                    .setContentIntent(pendingIntent)
-                    .setAutoCancel(true) // auto-remove notification when tapped
-                    .build()
-            val channel = NotificationChannel(channelId, "APOD", NotificationManager.IMPORTANCE_DEFAULT)
-            channel.setDescription("Notify every day that a new APOD is available.") // access property here is buggy in Kotlin
-            val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager.createNotificationChannel(channel)
-            notificationManager.notify(1, notification)
-        } else {
-            val notification = NotificationCompat.Builder(this, channelId)
-                    .setSmallIcon(R.mipmap.ic_launcher)
-                    .setContentTitle("Zapod")
-                    .setContentText("New APOD is available.")
-                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                    .setContentIntent(pendingIntent)
-                    .setAutoCancel(true) // auto-remove notification when tapped
-                    .build()
-            val notificationManager = NotificationManagerCompat.from(this)
-            notificationManager.notify(1, notification)
-        }
-
-
+    // TODO: review this code.
+    fun setRecurringAlarm(context: Context) {
+        val updateTime = Calendar.getInstance()
+        updateTime.setTimeZone(TimeZone.getTimeZone("UTC"))
+        updateTime.set(Calendar.HOUR_OF_DAY, 8)
+        updateTime.set(Calendar.MINUTE, 0)
+        val intent = Intent(context, AlarmReceiver::class.java)
+        val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT)
+        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, updateTime.timeInMillis, AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent)
     }
 }
