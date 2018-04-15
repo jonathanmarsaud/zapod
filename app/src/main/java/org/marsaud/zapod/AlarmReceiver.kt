@@ -7,7 +7,6 @@ import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.content.res.Resources
 import android.os.Build
 import android.support.v4.app.NotificationCompat
 import android.support.v4.app.NotificationManagerCompat
@@ -15,6 +14,8 @@ import android.support.v4.app.NotificationManagerCompat
 class AlarmReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
         val channelId = "org.marsaud.zapod.notifier"
+        val notificationContent = intent?.getStringExtra("notification_content")
+        val notificationChannelDescription = intent?.getStringExtra("notification_channeldescription")
         val intent = Intent(context, MainActivity::class.java)
         val pendingIntent = PendingIntent.getActivity(context, 0, intent, 0)
         /* Since Oreo we must:
@@ -32,12 +33,12 @@ class AlarmReceiver : BroadcastReceiver() {
             val notification = Notification.Builder(context, channelId)
                     .setSmallIcon(R.mipmap.ic_launcher)
                     .setContentTitle("Zapod")
-                    .setContentText(Resources.getSystem().getString(R.string.notification_content)) // Ressources.getSystem() to get access to strings.xml values outside of an Activity
+                    .setContentText(notificationContent)
                     .setContentIntent(pendingIntent)
                     .setAutoCancel(true) // auto-remove notification when tapped
                     .build()
             val channel = NotificationChannel(channelId, "APOD", NotificationManager.IMPORTANCE_DEFAULT)
-            channel.setDescription(Resources.getSystem().getString(R.string.notification_channeldescription)) // access property here is buggy in Kotlin
+            channel.description = notificationChannelDescription
             val notificationManager = context?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(channel)
             notificationManager.notify(1, notification)
@@ -46,7 +47,7 @@ class AlarmReceiver : BroadcastReceiver() {
                 val notification = NotificationCompat.Builder(context, channelId)
                         .setSmallIcon(R.mipmap.ic_launcher)
                         .setContentTitle("Zapod")
-                        .setContentText(Resources.getSystem().getString(R.string.notification_content)) // Ressources.getSystem() to get access to strings.xml values outside of an Activity
+                        .setContentText(notificationContent)
                         .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                         .setContentIntent(pendingIntent)
                         .setAutoCancel(true) // auto-remove notification when tapped
