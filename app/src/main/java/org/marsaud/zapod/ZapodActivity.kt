@@ -173,8 +173,8 @@ class ZapodActivity : AppCompatActivity() {
     fun setRecurringAlarm(context: Context) {
         val updateTime = Calendar.getInstance()
         updateTime.timeZone = TimeZone.getDefault() // access property here is buggy in Kotlin
-        updateTime.set(Calendar.HOUR_OF_DAY, 20)
-        updateTime.set(Calendar.MINUTE, 5)
+        updateTime.set(Calendar.HOUR_OF_DAY, 6)
+        updateTime.set(Calendar.MINUTE, 0)
         val intent = Intent(context, AlarmReceiver::class.java)
         intent.putExtra("notification_content", getString(R.string.notification_content)) // R.string is not available through a class which is not an Activity
         intent.putExtra("notification_channeldescription", getString(R.string.notification_channeldescription)) // R.string is not available through a class which is not an Activity
