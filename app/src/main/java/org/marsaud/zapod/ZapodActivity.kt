@@ -176,7 +176,7 @@ class ZapodActivity : AppCompatActivity() {
         updateTime.set(Calendar.HOUR_OF_DAY, 6)
         updateTime.set(Calendar.MINUTE, 0)
         val intent = Intent(context, AlarmReceiver::class.java)
-        val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT) // TODO: to review.
+        val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT)
         val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
         alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, updateTime.timeInMillis, AlarmManager.INTERVAL_DAY, pendingIntent)
     }
