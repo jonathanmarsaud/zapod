@@ -1,6 +1,7 @@
 package org.marsaud.zapod
 
-import android.app.WallpaperManager
+import android.app.*
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -9,6 +10,8 @@ import android.os.Build
 import android.os.Bundle
 import android.os.StrictMode
 import android.support.design.widget.Snackbar
+import android.support.v4.app.NotificationCompat
+import android.support.v4.app.NotificationManagerCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
@@ -160,5 +163,52 @@ class ZapodActivity : AppCompatActivity() {
             }
         }
         Snackbar.make(rootView, R.string.defined, Snackbar.LENGTH_SHORT).show()
+    }
+
+    /**
+     * Function to notify the user that a new APOD is available.
+     */
+    fun notifNewApod() {
+        val channelId = "org.marsaud.zapod.notifier"
+        val intent = Intent(this, MainActivity::class.java)
+        val pendingIntent = PendingIntent.getActivity(this, 0, intent, 0)
+        /* Since Oreo we must:
+         * 1) build a Notification;
+         * 2) build a NotificationChannel for this notification;
+         * 3) build a NotificationManager and pass the two to it;
+         * 4) call notify() method on the NotificationManager.
+         *
+         * Before Oreo we must:
+         * 1) build a Notification;
+         * 2) build a NotificationManager and pass the notification to it;
+         * 3) call notify() method on the NotificationManager.
+         */
+        if (Build.VERSION.SDK_INT >= 26) { // NotificationChannel are only supported since Android 8.0 (Oreo)
+            val notification = Notification.Builder(this, channelId)
+                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setContentTitle("Zapod")
+                    .setContentText("New APOD is available.")
+                    .setContentIntent(pendingIntent)
+                    .setAutoCancel(true) // auto-remove notification when tapped
+                    .build()
+            val channel = NotificationChannel(channelId, "APOD", NotificationManager.IMPORTANCE_DEFAULT)
+            channel.setDescription("Notify every day that a new APOD is available.") // access property here is buggy in Kotlin
+            val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+            notificationManager.notify(1, notification)
+        } else {
+            val notification = NotificationCompat.Builder(this, channelId)
+                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setContentTitle("Zapod")
+                    .setContentText("New APOD is available.")
+                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                    .setContentIntent(pendingIntent)
+                    .setAutoCancel(true) // auto-remove notification when tapped
+                    .build()
+            val notificationManager = NotificationManagerCompat.from(this)
+            notificationManager.notify(1, notification)
+        }
+
+
     }
 }
