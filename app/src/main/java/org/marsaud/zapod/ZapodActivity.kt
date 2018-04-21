@@ -178,7 +178,7 @@ class ZapodActivity : AppCompatActivity() {
         val intent = Intent(context, AlarmReceiver::class.java)
         intent.putExtra("notification_content", getString(R.string.notification_content)) // R.string is not available through a class which is not an Activity
         intent.putExtra("notification_channeldescription", getString(R.string.notification_channeldescription)) // R.string is not available through a class which is not an Activity
-        val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT)
+        val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
         val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
         alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, updateTime.timeInMillis, AlarmManager.INTERVAL_DAY, pendingIntent)
     }
