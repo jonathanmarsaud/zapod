@@ -27,7 +27,7 @@ import java.util.*
 class ZapodActivity : AppCompatActivity() {
     val baseUrl = "https://apod.nasa.gov/apod/"
     val client = OkHttpClient()
-    val version = "2.17"
+    val version = "2.18"
     var bmp: Bitmap? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,7 +54,10 @@ class ZapodActivity : AppCompatActivity() {
             errorTextView.visibility = View.VISIBLE
         }
 
-        setRecurringAlarm(this)
+        val alarmExist = (PendingIntent.getBroadcast(this, 0, Intent(this, AlarmReceiver::class.java), PendingIntent.FLAG_NO_CREATE) != null)
+        if (!alarmExist) {
+            setRecurringAlarm(this)
+        }
         client.newCall(Request.Builder().url("https://www.marsaud.org/zapod").header("User-Agent", "Zapod/$version").build()).execute() // for stats
     }
 
@@ -172,13 +175,13 @@ class ZapodActivity : AppCompatActivity() {
      */
     fun setRecurringAlarm(context: Context) {
         val updateTime = Calendar.getInstance()
-        updateTime.timeZone = TimeZone.getDefault() // access property here is buggy in Kotlin
+        updateTime.timeZone = TimeZone.getDefault()
         updateTime.set(Calendar.HOUR_OF_DAY, 6)
         updateTime.set(Calendar.MINUTE, 0)
         val intent = Intent(context, AlarmReceiver::class.java)
         intent.putExtra("notification_content", getString(R.string.notification_content)) // R.string is not available through a class which is not an Activity
         intent.putExtra("notification_channeldescription", getString(R.string.notification_channeldescription)) // R.string is not available through a class which is not an Activity
-        val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+        val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT)
         val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
         alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, updateTime.timeInMillis, AlarmManager.INTERVAL_DAY, pendingIntent)
     }
