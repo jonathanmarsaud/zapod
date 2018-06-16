@@ -143,6 +143,7 @@ class ZapodActivity : AppCompatActivity() {
      */
     fun startImageActivity(view: View) {
         if (bmp != null) { // avoid using the PhotoView on the place-holder "NO DATA"
+            Snackbar.make(rootView, "Loading... As the image is at maximum quality, it can be long to render it. Please wait.", Snackbar.LENGTH_LONG).show()
             val file = File(filesDir, "apod.png")
             val fileOut = FileOutputStream(file)
             bmp?.compress(Bitmap.CompressFormat.PNG, 100, fileOut) // 100 is quality but ignored for PNGs as it's a lossless format
