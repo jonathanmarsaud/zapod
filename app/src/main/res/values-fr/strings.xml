@@ -3,9 +3,11 @@
 <resources>
     <string name="app_name">Zapod</string>
     <string name="apod">Image d’Astronomie du Jour</string>
+    <string name="loading">Chargement en cours… Il s’agit d’une image en très haute qualité, le chargement peut être long. Veuillez patienter.</string>
     <string name="define">Définir en tant qu’arrière-plan</string>
     <string name="defined">Arrière-plan modifié</string>
     <string name="error">L’image n’a pas pu être récupérée : vous êtes peut-être hors-connexion ou c’est un problème lié au site Web APOD de la NASA (ne répond pas ou a publié autre chose qu’une image) ; veuillez réessayer plus tard.</string>
+
     <string name="apod_web">Site Web APOD</string>
     <string name="about">À propos</string>
     <string name="about_author">Auteur :\nJonathan Marsaud &lt;zic@marsaud.org&gt;\nwww.marsaud.org\nFait avec ❤️ dans le langage de programmation Kotlin</string>

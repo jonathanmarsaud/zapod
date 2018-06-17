@@ -27,7 +27,7 @@ import java.util.*
 class ZapodActivity : AppCompatActivity() {
     val baseUrl = "https://apod.nasa.gov/apod/"
     val client = OkHttpClient()
-    val version = "2.19"
+    val version = "2.20"
     var bmp: Bitmap? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -143,7 +143,7 @@ class ZapodActivity : AppCompatActivity() {
      */
     fun startImageActivity(view: View) {
         if (bmp != null) { // avoid using the PhotoView on the place-holder "NO DATA"
-            Snackbar.make(rootView, "Loading... As the image is at maximum quality, it can be long to render it. Please wait.", Snackbar.LENGTH_LONG).show()
+            Snackbar.make(rootView, R.string.loading, Snackbar.LENGTH_LONG).show()
             launch {
                 val file = File(filesDir, "apod.png")
                 val fileOut = FileOutputStream(file)
