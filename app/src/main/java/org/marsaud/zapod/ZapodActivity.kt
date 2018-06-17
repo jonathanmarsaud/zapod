@@ -16,7 +16,6 @@ import android.view.MenuItem
 import android.view.View
 import androidx.core.net.toUri
 import kotlinx.android.synthetic.main.activity_zapod.*
-import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.launch
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -145,14 +144,14 @@ class ZapodActivity : AppCompatActivity() {
     fun startImageActivity(view: View) {
         if (bmp != null) { // avoid using the PhotoView on the place-holder "NO DATA"
             Snackbar.make(rootView, "Loading... As the image is at maximum quality, it can be long to render it. Please wait.", Snackbar.LENGTH_LONG).show()
-            launch(CommonPool) {
+            launch {
                 val file = File(filesDir, "apod.png")
                 val fileOut = FileOutputStream(file)
                 bmp?.compress(Bitmap.CompressFormat.PNG, 100, fileOut) // 100 is quality but ignored for PNGs as it's a lossless format
                 fileOut.flush()
                 fileOut.close()
+                startActivity(Intent(this@ZapodActivity, ImageActivity::class.java))
             }
-            startActivity(Intent(this, ImageActivity::class.java))
         }
     }
 
