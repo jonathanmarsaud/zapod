@@ -27,7 +27,7 @@ import java.util.*
 class ZapodActivity : AppCompatActivity() {
     val baseUrl = "https://apod.nasa.gov/apod/"
     val client = OkHttpClient()
-    val version = "2.20"
+    val version = "2.21"
     var bmp: Bitmap? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {

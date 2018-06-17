@@ -3,7 +3,7 @@
 <resources>
     <string name="app_name">Zapod</string>
     <string name="apod">Astronomy Picture of the Day</string>
-    <string name="loading">Loading… As the image is at maximum quality, it can be long to render it. Please wait.</string>
+    <string name="loading">It’s a high-quality image, it can be long to load it…</string>
     <string name="define">Set as wallpaper</string>
     <string name="defined">Wallpaper changed</string>
     <string name="error">Cannot get image, maybe you are offline or it is a problem tied to NASA’s APOD website (not responding or published another format than image); try again later.</string>
